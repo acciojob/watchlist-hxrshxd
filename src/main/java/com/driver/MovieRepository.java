@@ -45,9 +45,7 @@ public class MovieRepository {
 
     public List<Movie> listOfMovies(){
         List<Movie> list = new ArrayList<>();
-        for (Movie m: movieDb.values()) {
-            list.add(m);
-        }
+        list.addAll(movieDb.values());
         return list;
     }
 
