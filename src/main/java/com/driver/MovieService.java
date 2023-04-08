@@ -6,6 +6,7 @@ import com.driver.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -37,8 +38,14 @@ public class MovieService {
         return movieRepository.getMoviesByDirectorName(directorName);
     }
 
-    public List<Movie> findAllMovies() {
-        return movieRepository.listOfMovies();
+    public List<String> findAllMovies() {
+        List<Movie> movieList = movieRepository.listOfMovies();
+        List<String> movieNameList = new ArrayList<>();
+
+        for (Movie m: movieList) {
+            movieNameList.add(m.getName());
+        }
+        return movieNameList;
     }
 
     public void deleteDirectorByName(String directorName) {
