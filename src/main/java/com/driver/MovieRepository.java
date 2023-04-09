@@ -27,7 +27,7 @@ public class MovieRepository {
     }
 
     public void addMovieDirectorPair(String directorName, String movieName) {
-        if (directorDb.containsKey(directorName)) {
+        if (directorDb.containsKey(directorName) && movieDb.containsKey(movieName)) {
 
             List<String> temp = new ArrayList<>();
             // create new list if director movie pair is not in db
