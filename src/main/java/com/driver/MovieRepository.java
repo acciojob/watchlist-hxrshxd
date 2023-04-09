@@ -39,9 +39,9 @@ public class MovieRepository {
             directorMovieDb.put(directorName, temp);
 
             // to incerase number of movies the director has
-            Director d = directorDb.get(directorName);
-            int size = directorMovieDb.get(directorName).size();
-            d.setNumberOfMovies(size);
+//            Director d = directorDb.get(directorName);
+//            int size = directorMovieDb.get(directorName).size();
+//            d.setNumberOfMovies(size);
         }
     }
 
