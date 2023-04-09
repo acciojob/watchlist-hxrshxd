@@ -27,12 +27,20 @@ public class MovieRepository {
     }
 
     public void addMovieDirectorPair(String directorName, String movieName) {
-        if (!directorMovieDb.containsKey(directorName)) directorMovieDb.put(directorName, new ArrayList<>());
-        directorMovieDb.get(directorName).add(movieName);
+        if (directorDb.containsKey(directorName)) {
 
-        Director d = directorDb.get(directorName);
-        int size = directorMovieDb.get(directorName).size();
-        d.setNumberOfMovies(size);
+            // create new list if director movie pair is not in db
+            if (!directorMovieDb.containsKey(directorName))
+                directorMovieDb.put(directorName, new ArrayList<>());
+
+            // add movie in director's movie list
+            directorMovieDb.get(directorName).add(movieName);
+
+            // to incerase number of movies the director has
+            Director d = directorDb.get(directorName);
+            int size = directorMovieDb.get(directorName).size();
+            d.setNumberOfMovies(size);
+        }
     }
 
     public Movie getMovieByName(String movieName) {
@@ -66,12 +74,14 @@ public class MovieRepository {
     }
 
     public List<String> deleteDirector(String directorName) {
-        directorDb.remove(directorName);
+        if (directorDb.containsKey(directorName)) directorDb.remove(directorName);
+
         List<String> list = new ArrayList<>();
         if (directorMovieDb.containsKey(directorName)) {
             list = directorMovieDb.get(directorName);
             directorMovieDb.remove(directorName);
         }
+
         return list;
     }
 
