@@ -29,12 +29,14 @@ public class MovieRepository {
     public void addMovieDirectorPair(String directorName, String movieName) {
         if (directorDb.containsKey(directorName)) {
 
+            List<String> temp = new ArrayList<>();
             // create new list if director movie pair is not in db
-            if (!directorMovieDb.containsKey(directorName))
-                directorMovieDb.put(directorName, new ArrayList<>());
+            if (directorMovieDb.containsKey(directorName))
+                temp = directorMovieDb.get(directorName);
 
             // add movie in director's movie list
-            directorMovieDb.get(directorName).add(movieName);
+            temp.add(movieName);
+            directorMovieDb.put(directorName, temp);
 
             // to incerase number of movies the director has
             Director d = directorDb.get(directorName);
